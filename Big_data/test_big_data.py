@@ -1,7 +1,7 @@
 import unittest, timeit
 from Big_data import big_data as b
-#from memory_profiler import profile
-from Big_data import test as t
+from memory_profiler import profile
+
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
@@ -34,13 +34,11 @@ class MyTestCase(unittest.TestCase):
     def test_time(self):
         print(timeit.timeit(stmt='b.read_file()', number=1, globals=globals()))
         print(timeit.timeit(stmt='b.begin()', number=1, globals=globals()))
-        #print(timeit.timeit(stmt='t.ddd()', number=1, globals=globals()))
 
 
-
-    '''@profile
+    @profile
     def test_memory(self):
-        b.begin()'''
+        b.begin()
 
 
 if __name__ == '__main__':
