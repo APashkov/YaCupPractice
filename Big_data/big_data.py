@@ -12,39 +12,36 @@ def write_file(result, file='output.txt'):
     return
 
 
-def find(a_l, b_l, nn, mm):
-    n_max = max(nn)
-    m_max = max(mm)
+def find(a_len, b_len, n_tuple, m_tuple):
+    a_len = int(a_len) - 1
+    b_len = int(b_len) - 1
 
-    i = j = 0
-    #s = func(nn[i], mm[j])
-    s1 = nn[0]
-    s2 = mm[0]
-    a1 = a_l - 1
-    b1 = b_l - 1
+    n_max = max(n_tuple)
+    m_max = max(m_tuple)
 
-    for _ in range(a1 + b1):
-        if (j == b1) or (nn[i] < n_max):
-            i += 1
-        elif (i == a1) or (mm[j] < m_max):
-            j += 1
-        elif max(nn[i+1:]) < n_max:
-            j += 1
-        else:
-            i += 1
-        #s += func(nn[i], mm[j])
-        s1 += nn[i]
-        s2 += mm[j]
-    return s1 * 10 ** 9 + s2
+    n_reverse = list(n_tuple)
+    n_reverse.reverse()
 
+    index_first_n_max = n_tuple.index(n_max)
+    index_last_n_max = a_len - n_reverse.index(n_max)
+    count_m_max = index_last_n_max - index_first_n_max
 
-'''def func(ni, mj):
-    return ni * 10 ** 9 + mj'''
+    s1 = sum(n_tuple) + n_max * (b_len)
+
+    s21 = m_tuple[0] * index_first_n_max
+    s22 = sum(m_tuple)
+    s23 = m_max * count_m_max
+    s24 = m_tuple[b_len] * (a_len - index_last_n_max)
+    s2 = s21 + s22 + s23 + s24
+
+    s = s1 * 10 ** 9 + s2
+
+    return s
 
 
 def begin():
-    a_len, b_len, n_line, m_line = read_file()
-    summa = find(int(a_len), int(b_len), n_line, m_line)
+    a_l, b_l, n_line, m_line = read_file()
+    summa = find(a_l, b_l, n_line, m_line)
     write_file(str(summa))
 
 

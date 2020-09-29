@@ -7,7 +7,8 @@ a = 100000
 def data_range():
     d = ''
     for _ in range(a):
-        d += str(randrange(10)) + ' '
+        d += '1 '
+        #d += str(randrange(10)) + ' '
     return d
 
 
